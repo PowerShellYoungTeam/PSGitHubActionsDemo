@@ -11,7 +11,7 @@ jobs:
 
       - name: Install Dependency Modules
         shell: pwsh
-        run: Install-Module Pester -Force; Install-Module ModuleBuilder
+        run: Install-Module Pester -Force; Install-Module ModuleBuilder -Force
 
       - name: Build Module
         shell: pwsh
