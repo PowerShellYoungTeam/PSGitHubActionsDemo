@@ -11,14 +11,16 @@ jobs:
 
       - name: Install Dependency Modules
         shell: pwsh
-        run: Install-Module Pester -Force; Install-Module ModuleBuilder -Force
+        run: Install-Module ModuleBuilder -Force
 
       - name: Build Module
         shell: pwsh
         run: ./build.ps1
 
   test:
+    needs: build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v5
       - name: Test Module
         uses: ./.github/actions/test-module
