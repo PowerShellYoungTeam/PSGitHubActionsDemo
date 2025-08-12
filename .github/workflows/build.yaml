@@ -9,6 +9,10 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - name: Install Dependency Modules
+        shell: pwsh
+        run: Install-Module Pester -Force; Install-Module ModuleBuilder
+
       - name: Build Module
         shell: pwsh
         run: ./build.ps1
