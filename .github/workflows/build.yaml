@@ -49,4 +49,4 @@ jobs:
         with:
           title: My Module Release
           tag: ${{ github.ref_name }}
-          workdir: Output
+          workdir: PSSessionize
