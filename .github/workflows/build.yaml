@@ -21,6 +21,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           path: ./Output
+          name: PSSessionize
 
   test:
     needs: build
@@ -41,6 +42,8 @@ jobs:
 
       - name: Download Built Module
         uses: actions/download-artifact@v4
+        with:
+          name: PSSessionize
 
       - name: Create a Release
         uses: elgohr/Github-Release-Action@v5
