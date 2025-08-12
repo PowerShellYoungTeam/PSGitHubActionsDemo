@@ -11,5 +11,10 @@ jobs:
 
       - name: Build Module
         shell: pwsh
-        run: |
-          ./build.ps1
+        run: ./build.ps1
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test Module
+        uses: ./.github/actions/test-module
