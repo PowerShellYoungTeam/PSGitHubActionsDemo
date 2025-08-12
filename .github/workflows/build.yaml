@@ -36,7 +36,7 @@ jobs:
     permissions: 
       contents: write
     runs-on: ubuntu-latest
-    if: ${{ contains(github.event.ref, '/tags/') }}
+    if: ${{ github.ref_type == 'tag' }}
     steps:
       - uses: actions/checkout@v5
 
@@ -46,10 +46,6 @@ jobs:
           name: PSSessionize
 
       - name: Create a Release
-        uses: elgohr/Github-Release-Action@v5
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v2
         with:
-          title: My Module Release
-          tag: ${{ github.ref_name }}
-          workdir: PSSessionize
+          files: PSSessionize
