@@ -37,6 +37,8 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ contains(github.event.ref, '/tags/') }}
     steps:
+      - uses: actions/checkout@v5
+
       - name: Download Built Module
         uses: actions/download-artifact@v4
 
@@ -47,3 +49,4 @@ jobs:
         with:
           title: My Module Release
           tag: ${{ github.ref_name }}
+          workdir: Output
