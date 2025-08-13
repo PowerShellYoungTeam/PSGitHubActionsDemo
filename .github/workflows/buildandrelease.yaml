@@ -38,10 +38,12 @@ jobs:
   release:
     permissions:
       contents: write
-      
+
     needs: test
     if: ${{ github.ref_type == 'tag' }}
     runs-on: ubuntu-latest
     steps:
       - name: Release Module
         uses: softprops/action-gh-release@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
