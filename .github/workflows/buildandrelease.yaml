@@ -36,6 +36,9 @@ jobs:
         run: Invoke-Pester -Output Detailed
 
   release:
+    permissions:
+      contents: write
+      
     needs: test
     if: ${{ github.ref_type == 'tag' }}
     runs-on: ubuntu-latest
