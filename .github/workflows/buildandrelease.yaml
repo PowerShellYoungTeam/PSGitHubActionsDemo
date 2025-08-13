@@ -2,7 +2,9 @@ on:
   push: 
     branches: [main]
     tags: [v*]
-
+  issues:
+    types:
+      opened
   workflow_dispatch: 
 
 jobs:
@@ -36,9 +38,20 @@ jobs:
         run: Invoke-Pester -Output Detailed
 
   release:
+    permissions:
+      contents: write
+
     needs: test
     if: ${{ github.ref_type == 'tag' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Release Module
-        uses: softprops/action-gh-release@v2
+      - name: PowerShell Release to GitHub
+        shell: pwsh
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          Write-Host 'hello world'
+          $Headers = @{
+            'Authorization' = "Bearer $($env:TOKEN)"
+          }
+
