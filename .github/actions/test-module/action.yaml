@@ -1,9 +1,0 @@
-name: Test Module
-description: Runs the pester tests in the module
-runs:
-  using: composite
-  steps:
-    - name: Run Pester Tests
-      shell: pwsh
-      run: |
-        Invoke-Pester -Output Detailed
