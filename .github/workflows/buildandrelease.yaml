@@ -1,0 +1,14 @@
+on:
+  push: 
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v5
+
+      - name: Build Module
+        shell: pwsh
+        run: ./build.ps1
