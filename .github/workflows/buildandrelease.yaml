@@ -11,4 +11,8 @@ jobs:
 
       - name: Build Module
         shell: pwsh
+        run: Install-Module ModuleBuilder -Force
+
+      - name: Build Module
+        shell: pwsh
         run: ./build.ps1
