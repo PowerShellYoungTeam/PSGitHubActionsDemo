@@ -2,7 +2,9 @@ on:
   push: 
     branches: [main]
     tags: [v*]
-
+  issues:
+    types:
+      opened
   workflow_dispatch: 
 
 jobs:
@@ -43,7 +45,13 @@ jobs:
     if: ${{ github.ref_type == 'tag' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Release Module
-        uses: softprops/action-gh-release@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: PowerShell Release to GitHub
+        shell: pwsh
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          Write-Host 'hello world'
+          $Headers = @{
+            'Authorization' = "Bearer $($env:TOKEN)"
+          }
+
