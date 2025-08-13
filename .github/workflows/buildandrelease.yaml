@@ -1,6 +1,9 @@
 on:
   push: 
     branches: [main]
+    tags: [v*]
+
+  workflow_dispatch: 
 
 jobs:
   build:
@@ -31,3 +34,11 @@ jobs:
       - name: Test Module
         shell: pwsh
         run: Invoke-Pester -Output Detailed
+
+  release:
+    needs: test
+    if: ${{ github.ref_type == 'tag' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Release Module
+        uses: softprops/action-gh-release@v2
